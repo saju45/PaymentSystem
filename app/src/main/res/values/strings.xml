@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MytPaymentSystem</string>
+
+
+    <string-array name="spinner_item">
+
+        <item>Agent</item>
+        <item>Personal</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

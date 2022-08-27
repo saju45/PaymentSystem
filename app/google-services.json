@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "222686675473",
+    "firebase_url": "https://paymentsystem-83ac0-default-rtdb.firebaseio.com",
+    "project_id": "paymentsystem-83ac0",
+    "storage_bucket": "paymentsystem-83ac0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222686675473:android:4d0e83cfe5a579626ba7b0",
+        "android_client_info": {
+          "package_name": "com.example.mytpaymentsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222686675473-dr64hgmvapiqrjmvue1dgd51c2esoaev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mytpaymentsystem",
+            "certificate_hash": "6730204519591922672ead223f0f35ee43fcceed"
+          }
+        },
+        {
+          "client_id": "222686675473-ajgv3ls94emm4h56l7stov2v8jdq6cp8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-XKmxqwnrvxOu8bVMzgGIWv6ZobjZbyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222686675473-ajgv3ls94emm4h56l7stov2v8jdq6cp8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
