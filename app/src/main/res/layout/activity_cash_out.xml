@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".personal.Activity.CashOutActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:background="#E91E63"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:src="@drawable/back_arrow2"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tint="@color/white" />
+
+            <TextView
+                android:fontFamily="@font/aladin"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:text="CAsh Out"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/cash_out"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:tint="@color/white" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+    <com.hbb20.CountryCodePicker
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@id/toolBar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/ccp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp" />
+
+
+    <EditText
+        android:id="@+id/numberEt"
+        android:hint="Enter agent number"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:padding="15dp"
+        android:background="@drawable/border"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/ccp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:id="@+id/amountEt"
+        android:hint="enter amount"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/numberEt"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cashOutBtn"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:text="Cash out"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/btn_gradiant"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/amountEt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

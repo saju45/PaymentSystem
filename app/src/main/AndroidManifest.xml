@@ -13,14 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MytPaymentSystem"
         tools:targetApi="31">
+
         <activity
-            android:name=".AgentDashboardActivity"
+            android:name=".Agent.Activity.AgentPaymentActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Agent.Activity.AgentFlexiloadActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Agent.Activity.CashInActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".personal.Activity.CashOutActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".Agent.Activity.AgentDashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,17 +38,23 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="true" />
+        <activity
             android:name=".RegistractionActivity"
             android:exported="false" />
         <activity
             android:name=".personal.Activity.DashboardActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ManageActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

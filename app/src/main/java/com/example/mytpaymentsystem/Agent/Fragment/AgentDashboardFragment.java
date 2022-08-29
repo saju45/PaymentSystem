@@ -1,4 +1,4 @@
-package com.example.mytpaymentsystem.personal.Fragment;
+package com.example.mytpaymentsystem.Agent.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mytpaymentsystem.Agent.Activity.AgentFlexiloadActivity;
+import com.example.mytpaymentsystem.Agent.Activity.CashInActivity;
 import com.example.mytpaymentsystem.R;
 import com.example.mytpaymentsystem.WelcomeActivity;
-import com.example.mytpaymentsystem.databinding.FragmentDashBoardBinding;
+import com.example.mytpaymentsystem.databinding.FragmentAgentDashboardBinding;
 import com.example.mytpaymentsystem.personal.Activity.CashOutActivity;
 import com.example.mytpaymentsystem.personal.Model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,25 +26,25 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class DashBoardFragment extends Fragment {
+public class AgentDashboardFragment extends Fragment {
 
 
-    FragmentDashBoardBinding binding;
+    FragmentAgentDashboardBinding binding;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     String uId;
     DatabaseReference reference;
-
-    public DashBoardFragment() {
+    public AgentDashboardFragment() {
         // Required empty public constructor
     }
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding=FragmentDashBoardBinding.inflate(inflater, container, false);
+        binding=FragmentAgentDashboardBinding.inflate(inflater, container, false);
 
 
         firebaseAuth=FirebaseAuth.getInstance();
@@ -51,10 +53,13 @@ public class DashBoardFragment extends Fragment {
 
         clickListener();
 
+
+
         fetchData();
 
-        return binding.getRoot();
 
+
+        return binding.getRoot();
     }
 
     public void clickListener(){
@@ -64,13 +69,17 @@ public class DashBoardFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+               // Intent intent=new Intent(getContext(),AgentFlexiloadActivity.class);
+             //   startActivity(intent);
+                startActivity(new Intent(getContext(), AgentFlexiloadActivity.class));
+
             }
         });
 
-        binding.cashOut.setOnClickListener(new View.OnClickListener() {
+        binding.cashIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), CashOutActivity.class));
+                startActivity(new Intent(getContext(), CashInActivity.class));
             }
         });
 
@@ -90,19 +99,20 @@ public class DashBoardFragment extends Fragment {
         if (user!=null){
             uId=user.getUid();
         }
-        reference.child("Personal").child(uId).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child("Agent").child(uId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
                 if (snapshot.exists())
-
                 {
+
                     UserModel model=snapshot.getValue(UserModel.class);
 
                     binding.name.setText(model.getName());
                     binding.number.setText(model.getPhone());
-                    binding.balance.setText(model.getBalance()+"");
+                    double balance=model.getBalance();
+                    binding.balance.setText(balance+"");
 
                 }
 
@@ -117,4 +127,5 @@ public class DashBoardFragment extends Fragment {
 
 
     }
+
 }

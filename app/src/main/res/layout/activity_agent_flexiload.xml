@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Agent.Activity.AgentFlexiloadActivity">
+
+
+
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/toolbar"/>
+
+
+    <com.hbb20.CountryCodePicker
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@id/toolBar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/ccp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp" />
+
+
+    <EditText
+        android:id="@+id/numberEt"
+        android:hint="Enter number"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:padding="15dp"
+        android:background="@drawable/border"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/ccp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:id="@+id/amountEt"
+        android:hint="enter amount"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/numberEt"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loadBtn"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:text="flexiload"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/btn_gradiant"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/amountEt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+    <TextView
+        android:id="@+id/cashInInfo"
+        android:textColor="#1EE9CB"
+        android:textSize="16sp"
+        android:text="recharge details"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/loadBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/flexiRv"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/cashInInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

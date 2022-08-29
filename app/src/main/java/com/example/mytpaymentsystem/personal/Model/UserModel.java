@@ -8,6 +8,10 @@ public class UserModel {
     String uid;
     Double balance;
 
+
+    public UserModel() {
+    }
+
     public UserModel(String name, String phone, String type, String uid, Double balance) {
         this.name = name;
         this.phone = phone;
