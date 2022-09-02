@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.mytpaymentsystem.Admin.Model.Discount;
 import com.example.mytpaymentsystem.Agent.Adapter.CashOutAdapter;
 import com.example.mytpaymentsystem.Agent.Fragment.CashOutModel;
 import com.example.mytpaymentsystem.MainActivity;
@@ -37,6 +38,7 @@ public class CashInActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     DatabaseReference reference;
     String uId;
+    double percent;
     double currentBalance;
     String number;
     String myNumber;
@@ -59,9 +61,7 @@ public class CashInActivity extends AppCompatActivity {
         fetchSingleData();
         clickListener();
 
-
         list=new ArrayList<>();
-
         CashOutAdapter adapter=new CashOutAdapter(CashInActivity.this,list);
 
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
@@ -78,7 +78,7 @@ public class CashInActivity extends AppCompatActivity {
 
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
 
-                    CashOutModel model=snapshot.getValue(CashOutModel.class);
+                    CashOutModel model=dataSnapshot.getValue(CashOutModel.class);
 
                     list.add(model);
                 }
@@ -95,7 +95,6 @@ public class CashInActivity extends AppCompatActivity {
     }
 
     public void clickListener(){
-
 
         binding.cashInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +119,29 @@ public class CashInActivity extends AppCompatActivity {
 
     public void fetchSingleData(){
 
+
+        reference.child("Admin")
+                .child("agentCashIn")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if (snapshot.exists())
+                        {
+                            Discount discount=snapshot.getValue(Discount.class);
+
+                            percent=discount.getDiscount();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
         reference.child("Agent")
                 .child(uId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -134,7 +156,6 @@ public class CashInActivity extends AppCompatActivity {
                             myNumber=model.getPhone();
                             name=model.getName();
                             agentBln=model.getBalance();
-
                         }
                     }
 
@@ -157,7 +178,6 @@ public class CashInActivity extends AppCompatActivity {
 
                         for (DataSnapshot dataSnapshot:snapshot.getChildren())
                         {
-                            String key=dataSnapshot.getKey();
                             UserModel model=dataSnapshot.getValue(UserModel.class);
 
                             DecimalFormat formatter = new DecimalFormat("#0.00");
@@ -166,7 +186,7 @@ public class CashInActivity extends AppCompatActivity {
                            double cashInAmount=Double.parseDouble(amount);
                             String userId=model.getUid();
 
-                            double parcentage=cashInAmount/100*5;
+                            double parcentage=cashInAmount/100*percent;
                             double currentBalance=model.getBalance();
                             double updatebalance=currentBalance+cashInAmount;
 
@@ -181,7 +201,7 @@ public class CashInActivity extends AppCompatActivity {
                             reference.child("Personal").child(userId).updateChildren(balanceMap);
                             reference.child("Personal").child(userId).child("cashIn").push().updateChildren(cashInHap);
 
-                            double agentUpBln=agentBln-cashInAmount+parcentage;
+                            double agentUpBln=agentBln-cashInAmount;
                             formatter.format(agentUpBln);
 
 
@@ -190,7 +210,8 @@ public class CashInActivity extends AppCompatActivity {
                             reference.child("Agent").child(uId).updateChildren(agentBln);
 
                             HashMap<String,Object> agentCashMap=new HashMap<>();
-                            agentCashMap.put("uId",userId);
+                            agentCashMap.put("key",userId);
+                            agentCashMap.put("number",number);
                             agentCashMap.put("amount",cashInAmount);
 
                             reference.child("Agent").child(uId).child("cashOut").push().setValue(agentCashMap);

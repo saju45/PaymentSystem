@@ -2,12 +2,15 @@ package com.example.mytpaymentsystem.Agent.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.example.mytpaymentsystem.Admin.Model.Discount;
 import com.example.mytpaymentsystem.Agent.Adapter.FlexiloadAdapter;
 import com.example.mytpaymentsystem.Agent.Model.AgentFlexiLoadModel;
 import com.example.mytpaymentsystem.R;
@@ -43,6 +46,7 @@ public class AgentFlexiloadActivity extends AppCompatActivity {
     double agentBln;
     String currentDate;
     String currentTime;
+    double percent;
     FlexiloadAdapter adapter;
     ArrayList<AgentFlexiLoadModel> list;
 
@@ -102,6 +106,8 @@ public class AgentFlexiloadActivity extends AppCompatActivity {
 
 
     public void fetchData(){
+
+
 
         reference.child("Agent")
                 .child(uId)
@@ -175,7 +181,7 @@ public class AgentFlexiloadActivity extends AppCompatActivity {
                             double cashInAmount=Double.parseDouble(amount);
                             String userId=model.getUid();
 
-                            double parcentage=cashInAmount/100*3;
+                            //double parcentage=cashInAmount/100*3;
                             double currentBalance=model.getBalance();
                             double updatebalance=currentBalance+cashInAmount;
 
@@ -183,7 +189,7 @@ public class AgentFlexiloadActivity extends AppCompatActivity {
                             balanceMap.put("balance",updatebalance);
 
                             reference.child("Personal").child(userId).updateChildren(balanceMap);
-                            double agentUpBln=agentBln-cashInAmount+parcentage;
+                            double agentUpBln=agentBln-cashInAmount;
                             formatter.format(agentUpBln);
 
 

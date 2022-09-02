@@ -1,13 +1,17 @@
-package com.example.mytpaymentsystem;
+package com.example.mytpaymentsystem.Common;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
+import com.example.mytpaymentsystem.Admin.Activity.AdminMainActivity;
+import com.example.mytpaymentsystem.R;
 import com.example.mytpaymentsystem.databinding.ActivityLoginBinding;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +34,22 @@ public class LoginActivity extends AppCompatActivity {
         binding.spinner.setAdapter(adapter);
 
         auth=FirebaseAuth.getInstance();
+
+        binding.login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String number="01773734512";
+                String password="saju0011";
+
+                if (binding.phoneEt.getText().toString().equals(number) && binding.passwordEt.getText().toString().equals(password))
+                {
+
+                    startActivity(new Intent(LoginActivity.this, AdminMainActivity.class));
+                    finish();
+                }
+            }
+        });
 
 
 

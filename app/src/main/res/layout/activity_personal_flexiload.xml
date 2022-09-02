@@ -4,28 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Agent.Activity.AgentPaymentActivity">
+    tools:context=".personal.Activity.PersonalFlexiload">
+
+
 
     <include
         android:id="@+id/toolBar"
         layout="@layout/toolbar"/>
 
 
-    <TextView
-        android:layout_marginStart="20dp"
-        android:id="@+id/text1"
-        android:textColor="#009688"
-        android:text="Please select your country"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/toolBar"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
     <com.hbb20.CountryCodePicker
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/border"
         android:layout_marginStart="20dp"
-        app:layout_constraintTop_toBottomOf="@id/text1"
+        app:layout_constraintTop_toBottomOf="@id/toolBar"
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/ccp"
         android:layout_marginEnd="20dp"
@@ -35,7 +27,7 @@
 
     <EditText
         android:id="@+id/numberEt"
-        android:hint="Enter merchant number"
+        android:hint="Enter number"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:padding="15dp"
@@ -60,11 +52,10 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/payBtn"
+        android:id="@+id/loadBtn"
         android:textAllCaps="false"
         android:layout_marginTop="20dp"
-        android:text="Pay"
-        android:backgroundTint="#009688"
+        android:text="flexiload"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:background="@drawable/btn_gradiant"
@@ -81,17 +72,17 @@
         android:id="@+id/cashInInfo"
         android:textColor="#1EE9CB"
         android:textSize="16sp"
-        android:text="payment details"
+        android:text="recharge details"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/payBtn"
+        app:layout_constraintTop_toBottomOf="@id/loadBtn"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/paymentRv"
+        android:id="@+id/flexiRv"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"

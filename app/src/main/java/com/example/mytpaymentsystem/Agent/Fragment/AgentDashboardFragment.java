@@ -12,10 +12,9 @@ import android.view.ViewGroup;
 
 import com.example.mytpaymentsystem.Agent.Activity.AgentFlexiloadActivity;
 import com.example.mytpaymentsystem.Agent.Activity.CashInActivity;
-import com.example.mytpaymentsystem.R;
-import com.example.mytpaymentsystem.WelcomeActivity;
+import com.example.mytpaymentsystem.Agent.Activity.ElectricityBillActivity;
+import com.example.mytpaymentsystem.Common.WelcomeActivity;
 import com.example.mytpaymentsystem.databinding.FragmentAgentDashboardBinding;
-import com.example.mytpaymentsystem.personal.Activity.CashOutActivity;
 import com.example.mytpaymentsystem.personal.Model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,12 +64,18 @@ public class AgentDashboardFragment extends Fragment {
     public void clickListener(){
 
 
+
+        binding.electricityPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ElectricityBillActivity.class));
+            }
+        });
+
         binding.recharge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               // Intent intent=new Intent(getContext(),AgentFlexiloadActivity.class);
-             //   startActivity(intent);
                 startActivity(new Intent(getContext(), AgentFlexiloadActivity.class));
 
             }

@@ -1,17 +1,15 @@
-package com.example.mytpaymentsystem;
+package com.example.mytpaymentsystem.Common;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.example.mytpaymentsystem.R;
 import com.example.mytpaymentsystem.databinding.ActivityWelcomeBinding;
-import com.example.mytpaymentsystem.personal.Activity.DashboardActivity;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -22,7 +20,7 @@ public class WelcomeActivity extends AppCompatActivity {
         binding=ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Animation move= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.move);
+        Animation move= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
         binding.image.startAnimation(move);
 
 

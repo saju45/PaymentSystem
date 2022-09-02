@@ -1,4 +1,4 @@
-package com.example.mytpaymentsystem;
+package com.example.mytpaymentsystem.Common;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+import com.example.mytpaymentsystem.R;
 import com.example.mytpaymentsystem.databinding.ActivityRegistractionBinding;
 
 public class RegistractionActivity extends AppCompatActivity {

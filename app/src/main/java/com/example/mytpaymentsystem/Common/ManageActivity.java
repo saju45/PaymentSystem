@@ -1,4 +1,4 @@
-package com.example.mytpaymentsystem;
+package com.example.mytpaymentsystem.Common;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +24,6 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class ManageActivity extends AppCompatActivity {

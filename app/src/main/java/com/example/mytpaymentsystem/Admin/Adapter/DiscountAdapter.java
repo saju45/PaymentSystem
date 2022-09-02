@@ -1,4 +1,4 @@
-package com.example.mytpaymentsystem.Agent.Adapter;
+package com.example.mytpaymentsystem.Admin.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,19 +8,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mytpaymentsystem.Agent.Fragment.CashOutModel;
+import com.example.mytpaymentsystem.Admin.Model.Discount;
 import com.example.mytpaymentsystem.R;
-import com.example.mytpaymentsystem.databinding.SimpleCashoutLayoutBinding;
+import com.example.mytpaymentsystem.databinding.LayoutDiscoutBinding;
 
 import java.util.ArrayList;
 
-public class CashOutAdapter extends RecyclerView.Adapter<CashOutAdapter.viewHolder> {
+public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.viewHolder>{
 
     Context context;
-    ArrayList<CashOutModel> list;
+    ArrayList<Discount> list;
 
-
-    public CashOutAdapter(Context context, ArrayList<CashOutModel> list) {
+    public DiscountAdapter(Context context, ArrayList<Discount> list) {
         this.context = context;
         this.list = list;
     }
@@ -28,18 +27,19 @@ public class CashOutAdapter extends RecyclerView.Adapter<CashOutAdapter.viewHold
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view= LayoutInflater.from(context).inflate(R.layout.simple_cashout_layout,parent,false);
+        View view= LayoutInflater.from(context).inflate(R.layout.layout_discout,parent,false);
         return new viewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
 
-        CashOutModel model=list.get(position);
+        Discount discount=list.get(position);
 
-        holder.binding.number.setText(model.getNumber());
-        holder.binding.amout.setText(model.getAmount()+"");
+        holder.binding.personal.setText(discount.getName());
+        holder.binding.discount.setText(discount.getDiscount()+"");
+        holder.binding.date.setText(discount.getDate());
+        holder.binding.time.setText(discount.getTime());
 
     }
 
@@ -49,11 +49,10 @@ public class CashOutAdapter extends RecyclerView.Adapter<CashOutAdapter.viewHold
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        SimpleCashoutLayoutBinding binding;
+        LayoutDiscoutBinding binding;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-
-            binding=SimpleCashoutLayoutBinding.bind(itemView);
+            binding=LayoutDiscoutBinding.bind(itemView);
         }
     }
 }

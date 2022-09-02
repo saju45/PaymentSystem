@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".Common.LoginActivity">
 
     <ImageView
         android:id="@+id/backBtn"
@@ -66,6 +66,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/phoneEt"
                 android:layout_height="wrap_content"/>
 
 
@@ -88,6 +89,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/passwordEt"
                 android:layout_height="wrap_content"/>
 
 

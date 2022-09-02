@@ -1,4 +1,4 @@
-package com.example.mytpaymentsystem.Agent.Activity;
+package com.example.mytpaymentsystem.personal.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +9,7 @@ import android.view.View;
 
 import com.example.mytpaymentsystem.Agent.Adapter.FlexiloadAdapter;
 import com.example.mytpaymentsystem.Agent.Model.AgentFlexiLoadModel;
-import com.example.mytpaymentsystem.R;
-import com.example.mytpaymentsystem.databinding.ActivityAgentPaymentBinding;
+import com.example.mytpaymentsystem.databinding.ActivityPersonalPaymentBinding;
 import com.example.mytpaymentsystem.personal.Model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,9 +26,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class AgentPaymentActivity extends AppCompatActivity {
+public class PersonalPayment extends AppCompatActivity {
 
-    ActivityAgentPaymentBinding binding;
+    ActivityPersonalPaymentBinding binding;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference reference;
@@ -43,11 +42,10 @@ public class AgentPaymentActivity extends AppCompatActivity {
     String currentTime;
     FlexiloadAdapter adapter;
     ArrayList<AgentFlexiLoadModel> list;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityAgentPaymentBinding.inflate(getLayoutInflater());
+        binding=ActivityPersonalPaymentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         firebaseAuth=FirebaseAuth.getInstance();
@@ -91,7 +89,7 @@ public class AgentPaymentActivity extends AppCompatActivity {
 
                     binding.ccp.registerCarrierNumberEditText(binding.numberEt);
                     number=binding.ccp.getFullNumberWithPlus().replace("","");
-                    flexiload();
+                    Payment();
                 }
             }
         });
@@ -101,14 +99,13 @@ public class AgentPaymentActivity extends AppCompatActivity {
 
     public void fetchData(){
 
-        reference.child("Agent")
-                .child(uId)
+        reference.child("Personal")
+                .child("2ypO4J4PfWf6GvePM3Yfcjk31qC2")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         if (snapshot.exists()){
-
 
                             UserModel model=snapshot.getValue(UserModel.class);
                             currentBalance=model.getBalance();
@@ -125,8 +122,8 @@ public class AgentPaymentActivity extends AppCompatActivity {
                     }
                 });
 
-        reference.child("Agent")
-                .child(uId)
+        reference.child("Personal")
+                .child("2ypO4J4PfWf6GvePM3Yfcjk31qC2")
                 .child("payment")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -140,7 +137,6 @@ public class AgentPaymentActivity extends AppCompatActivity {
                             list.add(model);
                         }
                         adapter.notifyDataSetChanged();
-
                     }
 
                     @Override
@@ -154,9 +150,9 @@ public class AgentPaymentActivity extends AppCompatActivity {
     }
 
 
-    public void flexiload(){
+    public void Payment(){
 
-        reference.child("Personal").orderByChild("phone").equalTo(number)
+        reference.child("Agent").orderByChild("phone").equalTo(number)
 
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -173,30 +169,29 @@ public class AgentPaymentActivity extends AppCompatActivity {
                             double paymentAmount=Double.parseDouble(amount);
                             String userId=model.getUid();
 
-                            double parcentage=paymentAmount/100*1;
                             double currentBalance=model.getBalance();
                             double updatebalance=currentBalance+paymentAmount;
 
                             HashMap<String,Object> balanceMap=new HashMap<>();
                             balanceMap.put("balance",updatebalance);
 
-                            reference.child("Personal").child(userId).updateChildren(balanceMap);
-                            double agentUpBln=agentBln-paymentAmount;
-                            formatter.format(agentUpBln);
+                            reference.child("Agent").child(userId).updateChildren(balanceMap);
+                            double persoanlUpBln=agentBln-paymentAmount;
+                            formatter.format(persoanlUpBln);
 
 
                             HashMap<String,Object> agentBln=new HashMap<>();
-                            agentBln.put("balance",agentUpBln);
-                            reference.child("Agent").child(uId).updateChildren(agentBln);
+                            agentBln.put("balance",persoanlUpBln);
+                            reference.child("Personal").child("2ypO4J4PfWf6GvePM3Yfcjk31qC2").updateChildren(agentBln);
 
-                            HashMap<String,Object> agentCashMap=new HashMap<>();
-                            agentCashMap.put("uId",userId);
-                            agentCashMap.put("number",number);
-                            agentCashMap.put("date",currentDate);
-                            agentCashMap.put("time",currentTime);
-                            agentCashMap.put("amount",paymentAmount);
+                            HashMap<String,Object> personalCashMap=new HashMap<>();
+                            personalCashMap.put("uId",userId);
+                            personalCashMap.put("number",number);
+                            personalCashMap.put("date",currentDate);
+                            personalCashMap.put("time",currentTime);
+                            personalCashMap.put("amount",paymentAmount);
 
-                            reference.child("Agent").child(uId).child("payment").push().setValue(agentCashMap);
+                            reference.child("Personal").child("2ypO4J4PfWf6GvePM3Yfcjk31qC2").child("payment").push().setValue(personalCashMap);
                             binding.numberEt.setText("");
                             binding.amountEt.setText("");
                         }
@@ -209,6 +204,5 @@ public class AgentPaymentActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
 }

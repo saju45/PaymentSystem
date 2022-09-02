@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mytpaymentsystem.R;
-import com.example.mytpaymentsystem.WelcomeActivity;
+import com.example.mytpaymentsystem.Common.WelcomeActivity;
 import com.example.mytpaymentsystem.databinding.FragmentDashBoardBinding;
 import com.example.mytpaymentsystem.personal.Activity.CashOutActivity;
+import com.example.mytpaymentsystem.personal.Activity.PersonalPayment;
 import com.example.mytpaymentsystem.personal.Model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,6 +60,12 @@ public class DashBoardFragment extends Fragment {
     public void clickListener(){
 
 
+        binding.payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), PersonalPayment.class));
+            }
+        });
         binding.recharge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +102,6 @@ public class DashBoardFragment extends Fragment {
 
 
                 if (snapshot.exists())
-
                 {
                     UserModel model=snapshot.getValue(UserModel.class);
 

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mytpaymentsystem">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,15 +15,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MytPaymentSystem"
         tools:targetApi="31">
+        <activity
+            android:name=".personal.Activity.PersonalFlexiload"
+            android:exported="false" />
+        <activity
+            android:name=".personal.Activity.PersonalPayment"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.Activity.CashIn_DF"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.Activity.SendMoneyDiscount"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.Activity.AdminMainActivity"
+            android:exported="true">
 
+        </activity>
+        <activity
+            android:name=".Agent.Activity.ElectricityBillActivity"
+            android:exported="false" />
         <activity
             android:name=".Agent.Activity.AgentPaymentActivity"
             android:exported="false" />
-
         <activity
             android:name=".Agent.Activity.AgentFlexiloadActivity"
             android:exported="false" />
-
         <activity
             android:name=".Agent.Activity.CashInActivity"
             android:exported="false" />
@@ -31,26 +50,33 @@
         <activity
             android:name=".Agent.Activity.AgentDashboardActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".Common.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
-            android:exported="true" />
+            android:name=".Common.WelcomeActivity"
+            android:exported="true">
+
+
+        </activity>
         <activity
-            android:name=".RegistractionActivity"
+            android:name=".Common.RegistractionActivity"
             android:exported="false" />
         <activity
             android:name=".personal.Activity.DashboardActivity"
-            android:exported="true" />
+            android:exported="true">
+
+
+        </activity>
         <activity
-            android:name=".ManageActivity"
+            android:name=".Common.ManageActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
